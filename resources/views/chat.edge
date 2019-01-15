@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    {{ style('style') }}
+</head>
+<body>
+
+  @set('username', request.input('username'))
+
+      @if(username)
+      <div id="chatbox">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">WebChat</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="">Xin chào <span  id="currentUser"></span></a></li>
+                <li class="dropdown" id="btn-logout">
+                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thoát</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class=" col-lg-6 col-md-6 col-sm-6" >
+          <div class="content-chat" id="listMessages">
+          </div>
+          <div id="inputmessage">
+            <img src="#" class="typing-image" width="40"/>
+          </div>
+          <div class="col-lg-12">
+            <div class="input-group">
+              <input type="text" class="form-control" id="textMessage"  placeholder="Chat ở đây nè !!!!">
+              <span class="input-group-addon" id="btn-send"><i class="glyphicon glyphicon-send"></i></span>
+            </div>
+          </div>
+          <div class="clear-fix"></div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div id="member">
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <h3 class="panel-title">Thành Viên</h3>
+              </div>
+              <ul class="list-group" id="listMem">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      @else
+      <div id="login">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4 col-lg-push-4 col-md-4 col-md-push-4 col-sm-4 col-sm-push-4 text-center">
+                <h1>Login</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 col-lg-push-4 col-md-4 col-md-push-4 col-sm-4 col-sm-push-4 text-center">
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-comment"></i></div>
+                    <form action="/" method="GET">
+                      <input type="text" id="name" name="username" placeholder="Enter your name" autofocus=1>
+                    </form>
+                    </div>
+                  </div>
+                <button type="button" id="btn-submit" class="btn btn-primary btn-lg">Đăng Ký</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      @endif
+<script>
+    window.username = '{{ username }}'
+
+  </script>
+  {{ script('https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js') }}
+  {{ script('https://unpkg.com/@adonisjs/websocket-client@1.0.9/dist/Ws.browser.js') }}
+  {{ script('https://unpkg.com/jquery@3.3.1/dist/jquery.js') }}
+  {{ script('chat.js') }}
+</body>
+</html>
