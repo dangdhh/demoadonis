@@ -3,7 +3,7 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 const Post = use("App/Models/Post");
-const ace = require('@adonisjs/ace')
+
 const AuthorizationService = use("App/Services/AuthorizationService");
 /**
  * Resourceful controller for interacting with posts
@@ -129,9 +129,18 @@ class PostController {
     });
   }
 
-  async refreshMigration(){
-    await  ace.call("migration:refresh");
-    // await ace.call('migration:run')
+  async refreshMigration({ request, response }) {
+    // const Helpers = use("Helpers");
+    // response.implicitEnd = false;
+    // const { exec } = require("child_process");
+    // let cmd = "node " + Helpers.appRoot() + "\\ace migration:refresh";
+    // console.log(cmd);
+    // exec(cmd, (err, stdout, stderr) => {
+    //   if (err) {
+    //     response.json(err);
+    //   }
+    //   response.json(stdout);
+    // });
   }
 }
 

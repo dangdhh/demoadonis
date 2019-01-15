@@ -1,6 +1,6 @@
-'use strict'
+"use strict";
 
-const BaseExceptionHandler = use('BaseExceptionHandler')
+const BaseExceptionHandler = use("BaseExceptionHandler");
 
 /**
  * This class handles all exceptions thrown during
@@ -20,27 +20,26 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async handle (error, { request, response,view }) {
+  async handle(error, { request, response, view }) {
     // response.status(error.status).send(error.message)
-    if(error.status == 404){
-      response.status(error.status).send(view.render('404'))
-    }else if(error.status == 500){
+    if (error.status == 404) {
+      response.status(error.status).send(view.render("404"));
+    } else if (error.status == 500) {
       response.json({
-        // code: error.status,
-        // message: "The resource error"
         code: error.status,
-            name: error.name,
-            message: error.message
-      })
+        message: "The resource error"
+        // code: error.status,
+        // name: error.name,
+        // message: error.message
+      });
       // response.status(error.status).send("Oops! this email exist!")
-    }
-    else{
+    } else {
       // response.status(error.status).send(error.message)
       response.json({
-            code: error.status,
-            name: error.name,
-            message: error.message
-          })
+        code: error.status,
+        name: error.name,
+        message: error.message
+      });
     }
     // else if(error.status == 500 && error.name == "ModelNotFoundException"){
     //   response.json({
@@ -67,8 +66,7 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async report (error, { request }) {
-  }
+  async report(error, { request }) {}
 }
 
-module.exports = ExceptionHandler
+module.exports = ExceptionHandler;
