@@ -1,6 +1,5 @@
 "use strict";
 
-
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -17,8 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
-Route.on("/").render("chat");
-Route.get("/test","PostController.refreshMigration");
+Route.on("/").render("login");
 Route.post("/register", "UserController.register");
 Route.post("/login", "UserController.login");
 Route.post("/active", "UserController.active");

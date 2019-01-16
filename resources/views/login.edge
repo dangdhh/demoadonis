@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+</head>
+<body>
+  <button id="login">login facebook</button>
+  <button id="loginGoogle">login google</button>
+  <button id="getcurrent">Current User</button>
+  
+</body>
+
+{{ script('https://www.gstatic.com/firebasejs/5.7.2/firebase.js') }}
+{{ script('https://unpkg.com/jquery@3.3.1/dist/jquery.js') }}
+<script>
+  $("#login").click(function() {
+  var config = {
+    apiKey: "AIzaSyDR0V0_vlU5nCleMz7OdipKJ3Ii2Ip3aGE",
+    authDomain: "dandan-3d38a.firebaseapp.com",
+    databaseURL: "https://dandan-3d38a.firebaseio.com",
+    projectId: "dandan-3d38a",
+    storageBucket: "dandan-3d38a.appspot.com",
+    messagingSenderId: "57242629115"
+  };
+  if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+  }
+   var provider = new firebase.auth.FacebookAuthProvider();
+   console.log(provider)
+   firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(function(result) {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        console.log("user", user);
+        // ...
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        console.log("error", error);
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+  // alert("Handler for .click() called.");
+});
+
+$("#loginGoogle").click(function(){
+  var config = {
+    apiKey: "AIzaSyDR0V0_vlU5nCleMz7OdipKJ3Ii2Ip3aGE",
+    authDomain: "dandan-3d38a.firebaseapp.com",
+    databaseURL: "https://dandan-3d38a.firebaseio.com",
+    projectId: "dandan-3d38a",
+    storageBucket: "dandan-3d38a.appspot.com",
+    messagingSenderId: "57242629115"
+  };
+    firebase.initializeApp(config);
+   var provider = new firebase.auth.GoogleAuthProvider();
+   console.log(provider)
+   firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(function(result) {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        console.log("user", user);
+        // ...
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        console.log("error", error);
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+});
+
+$("#getcurrent").click(function(){
+  var user = firebase.auth().currentUser;
+  console.log("user current",user)
+  //cái request o trong nay .. lay cai user gui len kem khi lay du lieu vê la no chay vao rule kiem tra
+})
+</script>
+</html>

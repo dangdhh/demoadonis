@@ -28,6 +28,8 @@
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/websocket": "^1.0.11",
+    "firebase": "^5.7.3",
+    "firebaseui": "^3.5.2",
     "mysql": "^2.16.0",
     "randomstring": "^1.1.5"
   },
